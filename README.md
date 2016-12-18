@@ -20,7 +20,7 @@ Attach a target postgres container to this container and mount a volume to conta
 Example:
 ```
 postgres-backup:
-  image: annixa/pg_dump
+  image: annixa/docker-pg_dump
   container_name: postgres-backup
   links:
     - postgres:db #Maps postgres as "db"
