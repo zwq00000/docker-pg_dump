@@ -42,4 +42,4 @@ Run backup once without cron job, use "mybackup" as backup file prefix, shell wi
         -v /path/to/target/folder:/dump \   # where to put db dumps
         -e PREFIX=mybackup \
         --link my-postgres-container:db \   # linked container with running mongo
-        annixa/pg_dump dump
+        annixa/docker-pg_dump dump
