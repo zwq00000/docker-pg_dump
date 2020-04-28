@@ -1,5 +1,5 @@
-FROM postgres:latest
-MAINTAINER Cristoffer Fairweather <cfairweather@annixa.com> # Previously Ilya Stepanov <dev@ilyastepanov.com>
+FROM postgres:11
+MAINTAINER Bruno Luiz <contact@brunoluiz.net> # Previously Cristoffer Fairweather <cfairweather@annixa.com>
 
 RUN apt-get update && \
     apt-get install -y cron && \
