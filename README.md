@@ -1,7 +1,9 @@
-annixa/pg_dump
+brunoluiz/pg_dump
 ================
 
-Docker image with pg_dump running as a cron task. Find the image, here: https://hub.docker.com/r/annixa/docker-pg_dump/
+Docker image with pg_dump running as a cron task. Find the image, here: https://hub.docker.com/r/brunoluiz/pg_dump/.
+
+**⚠️ The actual container is using `pg_dump` from postgres 11**
 
 ## Usage
 
@@ -21,17 +23,16 @@ Attach a target postgres container to this container and mount a volume to conta
 Example:
 ```
 postgres-backup:
-  image: annixa/docker-pg_dump
-  container_name: postgres-backup
+  image: brunoluiz/pg_dump:11
   links:
-    - postgres:db #Maps postgres as "db"
+    - postgres
   environment:
     - PGUSER=postgres
     - PGPASSWORD=SumPassw0rdHere
-    - CRON_SCHEDULE=* * * * * #Every minute
-    - DELETE_OLDER_THAN=1 #Optionally delete files older than $DELETE_OLDER_THAN minutes.
-  #  - PGDB=postgres # The name of the database to dump
-  #  - PGHOST=db # The hostname of the PostgreSQL database to dump
+    - CRON_SCHEDULE=* * * * * # Every minute
+    - DELETE_OLDER_THAN=1 # Optionally delete files older than $DELETE_OLDER_THAN minutes.
+    - PGDB=postgres # The name of the database to dump
+    - PGHOST=postgres # The hostname of the PostgreSQL database to dump
   volumes:
     - /dump
   command: dump-cron
@@ -39,8 +40,10 @@ postgres-backup:
 
 Run backup once without cron job, use "mybackup" as backup file prefix, shell will ask for password:
 
-    docker run -ti --rm \
-        -v /path/to/target/folder:/dump \   # where to put db dumps
-        -e PREFIX=mybackup \
-        --link my-postgres-container:db \   # linked container with running mongo
-        annixa/docker-pg_dump dump
+```
+docker run -ti --rm \
+  -v /path/to/target/folder:/dump \   # where to put db dumps
+  -e PREFIX=mybackup \
+  --link my-postgres-container:db \   # linked container with running mongo
+  brunoluiz/pg_dump dump
+```
