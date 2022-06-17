@@ -1,5 +1,7 @@
-FROM postgres:11
-MAINTAINER Bruno Luiz <contact@brunoluiz.net> # Previously Cristoffer Fairweather <cfairweather@annixa.com>
+FROM postgres:13
+#Previously Cristoffer Fairweather <cfairweather@annixa.com>
+#Previously Bruno Luiz <contact@brunoluiz.net>
+LABEL AUTH="zhao weiqiang <zwq00000@hotmail.com>" 
 
 RUN apt-get update && \
     apt-get install -y cron && \

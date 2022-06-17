@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  pg_dump:
+    image: zwq00000/pg_dump
+    build:
+      context: .
+      dockerfile: Dockerfile

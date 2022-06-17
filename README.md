@@ -3,7 +3,7 @@ brunoluiz/pg_dump
 
 Docker image with pg_dump running as a cron task. Find the image, here: https://hub.docker.com/r/brunoluiz/pg_dump/.
 
-**⚠️ The actual container is using `pg_dump` from postgres 11**
+**⚠️ The actual container is using `pg_dump` from postgres 13**
 
 ## Usage
 
