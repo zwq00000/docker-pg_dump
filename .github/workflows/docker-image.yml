@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag zwq00000/pg_dump:13
+      
+    - name: Build Docker Image
+        uses: abhishek-070/docker-image-build-push-action@v1.0
+        with:
+          registry_url: 'docker.io'
+          repository_name: 'pg_dump'
+          user_name: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          image_version: '13'
+          docker_file: '.'
